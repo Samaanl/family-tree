@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>my-family-chart</title>
+    <script src="https://unpkg.com/d3@7"></script>
+    <script type="module" src="https://unpkg.com/family-chart@0.9.0"></script>
+    <link rel="stylesheet" href="https://unpkg.com/family-chart@0.9.0/dist/styles/family-chart.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        #FamilyChart {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            #FamilyChart {
+                width: 100vw;
+                height: 100vh;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="FamilyChart" class="f3" style="background-color:rgb(33,33,33);color:#fff;"></div>
+    <script type="module">
+
+        create(data())
+
+        function create(data) {
+            const f3Chart = f3.createChart('#FamilyChart', data)
+                .setTransitionTime(1000)
+                .setCardXSpacing(250)
+                .setCardYSpacing(150)
+                .setSingleParentEmptyCard(true, { label: 'ADD' })
+                .setShowSiblingsOfMain(false)
+                .setOrientationVertical()
+
+            const f3Card = f3Chart.setCardHtml()
+                .setCardDisplay([["first name", "last name"], ["birthday"]])
+                .setCardDim({})
+                .setMiniTree(true)
+                .setStyle('imageRect')
+                .setOnHoverPathToMain()
+
+
+            const f3EditTree = f3Chart.editTree()
+                .fixed(true)
+                .setFields(["first name", "last name", "birthday", "avatar"])
+                .setEditFirst(false)
+                .setCardClickOpen(f3Card)
+
+            f3EditTree.setNoEdit()
+
+            f3Chart.updateTree({ initial: true })
+            f3EditTree.open(f3Chart.getMainDatum())
+
+            f3Chart.updateTree({ initial: true })
+        }
+
+        function data() {
+            return [
+                {
+                    "id": "0",
+                    "rels": {
+                        "spouses": [
+                            "3cd20fc8-7eae-4d61-b2c2-19680bb468c2"
+                        ],
+                        "children": [
+                            "fd49a4dd-9d28-4c08-be79-473b2b497cf9",
+                            "d890f04d-70e7-438e-9969-f9d615d23952",
+                            "d802b4b0-cb84-4ebb-ac01-851a5af2c3f1",
+                            "e139f3b5-e126-42bd-9c94-951f1295fb79",
+                            "8f642d68-52a8-4eb8-be01-909c696a9464",
+                            "ac0d0aef-3e46-4c2c-bb2c-158bbf8ce1ae",
+                            "c386309f-2361-429c-858b-5f1cec0eed4f"
+                        ]
+                    },
+                    "data": {
+                        "first name": "Usman",
+                        "last name": "Sayed",
+                        "birthday": "1970",
+                        "avatar": "https://static8.depositphotos.com/1009634/988/v/950/depositphotos_9883921-stock-illustration-no-user-profile-picture.jpg",
+                        "gender": "M"
+                    }
+                },
+                {
+                    "id": "fd49a4dd-9d28-4c08-be79-473b2b497cf9",
+                    "data": {
+                        "gender": "M",
+                        "first name": "Kadar",
+                        "last name": "Sayed",
+                        "birthday": "",
+                        "avatar": ""
+                    },
+                    "rels": {
+                        "parents": [
+                            "0",
+                            "3cd20fc8-7eae-4d61-b2c2-19680bb468c2"
+                        ],
+                        "spouses": [
+                            "401f2946-6d7c-40a1-a04d-6537660b6529"
+                        ],
+                        "children": [
+                            "99197943-9ca2-413b-9709-526bc4d64fdd"
+                        ]
+                    }
+                },
+                {
+                    "id": "3cd20fc8-7eae-4d61-b2c2-19680bb468c2",
+                    "data": {
+                        "gender": "F",
+                        "first name": "Jamila",
+                        "last name": "Sayed",
+                        "birthday": "",
+                        "avatar": ""
+                    },
+                    "rels": {
+                        "children": [
+                            "fd49a4dd-9d28-4c08-be79-473b2b497cf9",
+                            "d890f04d-70e7-438e-9969-f9d615d23952",
+                            "d802b4b0-cb84-4ebb-ac01-851a5af2c3f1",
+                            "e139f3b5-e126-42bd-9c94-951f1295fb79",
+                            "8f642d68-52a8-4eb8-be01-909c696a9464",
+                            "ac0d0aef-3e46-4c2c-bb2c-158bbf8ce1ae",
+                            "c386309f-2361-429c-858b-5f1cec0eed4f"
+                        ],
+                        "spouses": [
+                            "0"
+                        ]
+                    }
+                },
+                {
+                    "id": "d890f04d-70e7-438e-9969-f9d615d23952",
+                    "data": {
+                        "gender": "M",
+                        "first name": "Aziz",
+                        "last name": "Sayed",
+                        "birthday": "",
+                        "avatar": "",
+                        "notes": "is a polic man pro carrer"
+                    },
+                    "rels": {
+                        "parents": [
+                            "3cd20fc8-7eae-4d61-b2c2-19680bb468c2",
+                            "0"
+                        ]
+                    }
+                },
+                {
+                    "id": "d802b4b0-cb84-4ebb-ac01-851a5af2c3f1",
+                    "data": {
+                        "gender": "F",
+                        "first name": "Roshan",
+                        "last name": "Sayed",
+                        "birthday": "1980",
+                        "avatar": ""
+                    },
+                    "rels": {
+                        "parents": [
+                            "3cd20fc8-7eae-4d61-b2c2-19680bb468c2",
+                            "0"
+                        ]
+                    }
+                },
+                {
+                    "id": "e139f3b5-e126-42bd-9c94-951f1295fb79",
+                    "data": {
+                        "gender": "F",
+                        "first name": "Zaira",
+                        "last name": "Sayed",
+                        "birthday": "",
+                        "avatar": ""
+                    },
+                    "rels": {
+                        "parents": [
+                            "3cd20fc8-7eae-4d61-b2c2-19680bb468c2",
+                            "0"
+                        ]
+                    }
+                },
+                {
+                    "id": "8f642d68-52a8-4eb8-be01-909c696a9464",
+                    "data": {
+                        "gender": "F",
+                        "first name": "Famida ",
+                        "last name": "Sayed",
+                        "birthday": "",
+                        "avatar": ""
+                    },
+                    "rels": {
+                        "parents": [
+                            "3cd20fc8-7eae-4d61-b2c2-19680bb468c2",
+                            "0"
+                        ]
+                    }
+                },
+                {
+                    "id": "ac0d0aef-3e46-4c2c-bb2c-158bbf8ce1ae",
+                    "data": {
+                        "gender": "F",
+                        "first name": "Namma",
+                        "last name": "Sayed",
+                        "birthday": "",
+                        "avatar": ""
+                    },
+                    "rels": {
+                        "parents": [
+                            "0",
+                            "3cd20fc8-7eae-4d61-b2c2-19680bb468c2"
+                        ]
+                    }
+                },
+                {
+                    "id": "c386309f-2361-429c-858b-5f1cec0eed4f",
+                    "data": {
+                        "gender": "F",
+                        "first name": "Fatima",
+                        "last name": "Sayed",
+                        "birthday": "",
+                        "avatar": ""
+                    },
+                    "rels": {
+                        "parents": [
+                            "3cd20fc8-7eae-4d61-b2c2-19680bb468c2",
+                            "0"
+                        ]
+                    }
+                },
+                {
+                    "id": "401f2946-6d7c-40a1-a04d-6537660b6529",
+                    "data": {
+                        "gender": "F",
+                        "first name": "Nasifa",
+                        "last name": "Sayed",
+                        "birthday": "",
+                        "avatar": ""
+                    },
+                    "rels": {
+                        "children": [
+                            "99197943-9ca2-413b-9709-526bc4d64fdd"
+                        ],
+                        "spouses": [
+                            "fd49a4dd-9d28-4c08-be79-473b2b497cf9"
+                        ]
+                    }
+                },
+                {
+                    "id": "99197943-9ca2-413b-9709-526bc4d64fdd",
+                    "data": {
+                        "gender": "M",
+                        "first name": "Samaan",
+                        "last name": "Sayed",
+                        "birthday": "",
+                        "avatar": ""
+                    },
+                    "rels": {
+                        "parents": [
+                            "fd49a4dd-9d28-4c08-be79-473b2b497cf9",
+                            "401f2946-6d7c-40a1-a04d-6537660b6529"
+                        ]
+                    }
+                }
+            ]
+        }
+
+
+    </script>
+</body>
+
+</html>
