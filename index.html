@@ -58,13 +58,13 @@
                 .setOnHoverPathToMain()
 
 
-            const f3EditTree = f3Chart.editTree()
-                .fixed(true)
-                .setFields(["first name", "last name", "birthday", "avatar"])
-                .setEditFirst(false)
-                .setCardClickOpen(f3Card)
+            // const f3EditTree = f3Chart.editTree()
+            //     .fixed(true)
+            //     .setFields(["first name", "last name", "birthday", "avatar"])
+            //     .setEditFirst(false)
+            //     .setCardClickOpen(f3Card)
 
-            f3EditTree.setNoEdit()
+            // f3EditTree.setNoEdit()
 
             f3Chart.updateTree({ initial: true })
             f3EditTree.open(f3Chart.getMainDatum())
